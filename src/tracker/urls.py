@@ -1,6 +1,6 @@
 from django.urls import path
 from tracker.views import (
-    ProjectListView, 
+    ProjectListView,
     ProjectDetailView,
     TaskDetailView,
     ProjectCreateView,
@@ -10,7 +10,7 @@ from tracker.views import (
     TaskUpdateView,
     TaskDeleteView,
     ProjectDeleteView
-    )
+)
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='project-list'),
