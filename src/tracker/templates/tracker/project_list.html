@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список проектов
+{% endblock title %}
+
+{% block page_title %}
+<h2>Список проектов</h2>
+{% endblock page_title %}
+
+{% block create_btn %}
+<a href="{% url 'project-create' %}" class="btn btn-primary">Создать проект</a>
+{% endblock create_btn %}
+
+{% block content %}
+{% include 'tracker/partial/project_item_list.html'%}
+{% endblock content %}
