@@ -6,12 +6,17 @@
 
 
 {% block content %}
-<p>Вы действительно желаете удалить "{{ project.summary }}"?</p>
-<form action="" method="post">
-    {% csrf_token %}
-    <div>
-        <a href="{% url 'task-list' %}" class="btn btn-secondary">Вернуться</a>
-        <input class="btn btn-danger" type="submit" value="Удалить">
+<div style="height:50vh;" class="d-flex justify-content-center align-items-center">
+    <div class="bg-light p-5 rounded-3">
+        <p>Вы действительно желаете удалить "{{ project.summary }}"?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div>
+                <a href="{% url 'task-list' %}" class="btn btn-secondary">Вернуться</a>
+                <input class="btn btn-danger" type="submit" value="Удалить">
+            </div>
+        </form>
     </div>
-</form>
+</div>
+
 {% endblock content %}
