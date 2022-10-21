@@ -1,6 +1,6 @@
 from accounts.forms import LoginForm
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 
 
@@ -26,3 +26,8 @@ class LoginView(TemplateView):
             return redirect('login')
         login(request, user)
         return redirect('project-list')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('project-list')

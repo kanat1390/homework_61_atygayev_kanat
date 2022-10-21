@@ -36,9 +36,20 @@
                                 <a class="nav-link" style="color:black;" href="{% url 'task-list' %}">Задачи</a>
                             </li>
                         </ul>
+
                         {% block create_btn %}
 
                         {% endblock create_btn %}
+                        <div class="m-3">
+                            {% if user.is_authenticated %}
+                            <form action="{% url 'logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit">Выход</button>
+                            </form>
+                            {% else %}
+                            <a href="{% url 'login' %}">Войти</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </nav>
