@@ -26,7 +26,7 @@ class LoginView(TemplateView):
         if not user:
             return redirect('login')
         login(request, user)
-        return redirect(next)
+        return redirect(next) if next else redirect('project-list')
 
 
 def logout_view(request):
