@@ -44,10 +44,10 @@
                             {% if user.is_authenticated %}
                             <form action="{% url 'logout' %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit">Выход</button>
+                                <button type="submit" class="btn btn-secondary">Выход</button>
                             </form>
                             {% else %}
-                            <a href="{% url 'login' %}">Войти</a>
+                            <a href="{% url 'login' %}" class="btn btn-warning">Войти</a>
                             {% endif %}
                         </div>
                     </div>
