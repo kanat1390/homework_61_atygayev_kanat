@@ -5,6 +5,7 @@ from tracker.forms import ProjectForm
 from django.core.paginator import Paginator
 from .mixin import SuccessDetailUrlMixin
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class ProjectListView(ListView):
@@ -12,7 +13,6 @@ class ProjectListView(ListView):
     template_name = 'tracker/project_list.html'
     ordering = ['-started_date']
     queryset = Project.project_objects.all()
-
 
 
 class ProjectDetailView(DetailView):
@@ -29,7 +29,7 @@ class ProjectDetailView(DetailView):
         return context
 
 
-class ProjectCreateView(SuccessDetailUrlMixin, CreateView):
+class ProjectCreateView(SuccessDetailUrlMixin, LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'tracker/forms/project_form.html'
     detail_url_name = 'project-detail'
@@ -41,7 +41,7 @@ class ProjectCreateView(SuccessDetailUrlMixin, CreateView):
         return context
 
 
-class ProjectUpdateView(SuccessDetailUrlMixin, UpdateView):
+class ProjectUpdateView(SuccessDetailUrlMixin, LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'tracker/forms/project_form.html'
     detail_url_name = 'project-detail'
@@ -53,12 +53,12 @@ class ProjectUpdateView(SuccessDetailUrlMixin, UpdateView):
         return context
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
 
     def get_success_url(self):
         return reverse('project-list')
-    
+
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object.is_deleted = True

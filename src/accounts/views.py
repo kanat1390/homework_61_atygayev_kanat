@@ -16,6 +16,7 @@ class LoginView(TemplateView):
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
+        next = request.GET.get('next', None)
         form = self.form(request.POST)
         if not form.is_valid():
             return redirect('login')
@@ -25,7 +26,7 @@ class LoginView(TemplateView):
         if not user:
             return redirect('login')
         login(request, user)
-        return redirect('project-list')
+        return redirect(next)
 
 
 def logout_view(request):
